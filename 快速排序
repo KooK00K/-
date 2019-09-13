@@ -1,0 +1,21 @@
+public class Kuaisu {
+    public void quickSort(int[] a, int l, int r) {
+        if (l > r) return;
+        int i = l, j = r, x = a[l];
+        while (i < j) {
+            while (a[j] >= x && i < j) j--;
+            while (a[i] <= x && i < j) i++;
+            if (i < j) swap(a, i, j);
+        }
+        a[l] = a[i];
+        a[i] = x;
+        quickSort(a, l, j - 1);
+        quickSort(a, j + 1, r);
+    }
+
+    private void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+}
