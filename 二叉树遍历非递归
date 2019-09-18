@@ -1,0 +1,58 @@
+public class Traversal {
+    public ArrayList<Integer> pre(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        if (root == null) return list;
+        TreeNode p = root;
+        Stack<TreeNode> s = new Stack<>();
+        while (!s.isEmpty() || p != null) {
+            if (p != null) {
+                s.push(p);
+                list.add(p.val);
+                p = p.left;
+            } else {
+                TreeNode temp = s.peek();
+                s.pop();
+                p = temp.right;
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Integer> mid(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        if (root == null) return list;
+        TreeNode p = root;
+        Stack<TreeNode> s = new Stack<>();
+        while (!s.isEmpty() || p != null) {
+            if (p != null) {
+                s.push(p);
+                p = p.left;
+            } else {
+                p = s.peek();
+                list.add(p.val);
+                s.pop();
+                p = p.right;
+            }
+        }
+        return list;
+    }
+
+    public List<Integer> back(TreeNode root) {
+        List<Integer> list = new LinkedList<>();
+        if (root == null) return list;
+        TreeNode p = root;
+        Stack<TreeNode> s = new Stack<>();
+        while (!s.isEmpty() || p != null) {
+            if (p != null) {
+                s.push(p);
+                ((LinkedList<Integer>) list).addFirst(p.val);
+                p = p.right;
+            } else {
+                TreeNode t = s.peek();
+                s.pop();
+                p = t.left;
+            }
+        }
+        return list;
+    }
+}
